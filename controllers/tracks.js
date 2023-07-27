@@ -1,5 +1,6 @@
 import {Tracks} from "../models/index.js";
 
+
 /**
  * Obtener lista de la base de datos
  * @param {*} req 
@@ -8,7 +9,7 @@ import {Tracks} from "../models/index.js";
 const getItems = async (req,res) => {
     const data = await Tracks.find({});
 
-    res.send({data})
+    res.status(200).send({data})
 };
 
 /**
@@ -25,9 +26,7 @@ const getItem = (req,res) => {};
  */
 const createItem = async (req,res) => {
       const {body} = req
-      console.log("BODY",body)
       const newTrack = await Tracks.create(body)
-      console.log(newTrack) 
       res.status(201).send({newTrack: newTrack})
 };
 
