@@ -8,6 +8,6 @@ const router = express.Router();
 
 router.get("/", getItems);
 
-router.post("/", validatorCreateItem, customHeader, createItem)
+router.post("/", validatorCreateItem, createItem)
 
 export default router

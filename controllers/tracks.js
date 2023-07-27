@@ -1,4 +1,6 @@
+import { matchedData } from "express-validator";
 import {Tracks} from "../models/index.js";
+import { handleHttpError } from "../utils/handleError.js";
 
 
 /**
@@ -9,14 +11,14 @@ import {Tracks} from "../models/index.js";
 const getItems = async (req,res) => {
  
     try {
+        const data = await Tracks.find({});
+    
+        res.status(200).send({data})
 
     }catch(e) {
-        
+        handleHttpError(res, "ERROR_GET_ITEMS")
     }
 
-    const data = await Tracks.find({});
-
-    res.status(200).send({data})
 };
 
 /**
@@ -32,9 +34,14 @@ const getItem = (req,res) => {};
  * @param {*} res 
  */
 const createItem = async (req,res) => {
-      const {body} = req
+    try {
+      const body = matchedData(req)
+      //const {body} = req
       const newTrack = await Tracks.create(body)
       res.status(201).send({newTrack: newTrack})
+    }catch(e) { 
+        handleHttpError(res, "ERROR_CREATE_ITEMS")
+    }
 };
 
 /**
