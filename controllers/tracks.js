@@ -7,6 +7,13 @@ import {Tracks} from "../models/index.js";
  * @param {*} res 
  */
 const getItems = async (req,res) => {
+ 
+    try {
+
+    }catch(e) {
+        
+    }
+
     const data = await Tracks.find({});
 
     res.status(200).send({data})
