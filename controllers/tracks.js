@@ -56,7 +56,7 @@ const deleteItems = async (req,res) => {
     try{
         req = matchedData(req);
         const {id} = req
-        const data = await Tracks.findByIdAndDelete(id);
+        const data = await Tracks.delete({_id: id});
         res.status(200).send({data})
        }catch(e){
         handleHttpError(res, "ERROR_DELETE_ITEM")
