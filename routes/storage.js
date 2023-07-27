@@ -1,5 +1,4 @@
 import express from "express";
-import { __dirname } from "../utils/utils.js";
 import uploadMiddleware from "../utils/handleStorage.js";
 import { createItem } from "../controllers/storage.js";
 

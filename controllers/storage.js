@@ -1,4 +1,6 @@
-import { Storages } from "../models";
+import { Storages } from "../models/index.js";
+
+const PUBLIC_URL = process.env.PUBLIC_URL
 
 /**
  * Obtener lista de la base de datos
@@ -24,11 +26,14 @@ const getItem = (req,res) => {};
  * @param {*} res 
  */
 const createItem = async (req,res) => {
-      const {body} = req
-      console.log("BODY",body)
-      const newTrack = await Tracks.create(body)
-      console.log(newTrack) 
-      res.status(201).send({newTrack: newTrack})
+      const {body, file} = req
+
+      const fileData = {
+        filename: file.filename,
+        url: `${PUBLIC_URL}/${file.filename}`
+      }
+      const data = await Storages.create(fileData)
+      res.status(201).send({data})
 };
 
 /**

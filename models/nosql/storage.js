@@ -7,7 +7,7 @@ const storageSchema = new Schema({
         required: true
     },
     filename: {
-        type: Number
+        type: String
     }
 },{
     timestamps: true,
