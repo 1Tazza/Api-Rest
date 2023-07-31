@@ -5,9 +5,10 @@ import { handleHttpError } from "../utils/handleError.js";
 
 const getItems = async (req,res) => {
     try {
+        const user = req.user
         const data = await Tracks.find({});
     
-        res.status(200).send({data})
+        res.status(200).send({data, user})
 
     }catch(e) {
         handleHttpError(res, "ERROR_GET_ITEMS")
