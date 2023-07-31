@@ -1,12 +1,12 @@
 import bcryptjs from "bcryptjs"
 
-const encrypt = async() => {
-    const hash = await bcryptjs.hash()
+const encrypt = async(passwordPlain) => {
+    const hash = await bcryptjs.hash(passwordPlain, 10)
+    return hash
 }
 
-const compare = () => {
-
-
+const compare = async(passwordPlain, hashPassword) => {
+    return await bcryptjs.compare(passwordPlain, hashPassword)
 }
 
 export {encrypt, compare}
