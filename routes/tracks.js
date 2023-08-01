@@ -3,18 +3,19 @@ import { getItems, getItem, createItem, updateItems, deleteItems } from "../cont
 import { validatorCreateItem, validatorGetItem } from "../validators/tracks.js";
 import { customHeader } from "../middlewares/customHeader.js";
 import { authMiddleware } from "../middlewares/session.js";
+import checkRol from "../middlewares/rol.js";
 
 const router = express.Router();
 
 
 router.get("/", authMiddleware, getItems);
 
-router.get("/:id", validatorGetItem, getItem)
+router.get("/:id", authMiddleware, validatorGetItem, getItem)
 
-router.post("/", validatorCreateItem, createItem)
+router.post("/", authMiddleware, checkRol(["admin"]), validatorCreateItem, createItem)
 
-router.put("/:id", validatorGetItem, validatorCreateItem, updateItems)
+router.put("/:id", authMiddleware, validatorGetItem, validatorCreateItem, updateItems)
 
-router.delete("/:id", validatorGetItem, deleteItems)
+router.delete("/:id", authMiddleware, validatorGetItem, deleteItems)
 
 export default router
