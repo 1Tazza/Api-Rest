@@ -13,9 +13,12 @@ const sequelize = new Sequelize(
 
 const dbConnectPostgre = async () => {
     try{
-
+       await sequelize.authenticate();
+       console.log("POSTGRESQL Conexión correcta")
     }catch(e){
-        console.log("POSTGRESQL ERROR")
+        console.log("POSTGRESQL_ERROR")
     }
 
 }
+
+export {dbConnectPostgre}
