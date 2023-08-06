@@ -18,7 +18,7 @@ const port = process.env.PORT || 3000
 app.use("/", routes)
 
 app.listen(port, () => {
-    console.log(`La app esta corriendo en el puerto http://localhost:${port}`)
-}) 
+    console.log(`http://localhost:${port}`);
+}); 
 
 (ENGINE_DB === "nosql") ? dbConnect() : dbConnectPostgre()
