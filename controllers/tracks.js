@@ -31,6 +31,7 @@ const getItem = async(req,res) => {
 
 const createItem = async (req,res) => {
     try {
+        console.log("puede????")
       const body = matchedData(req)
       //const {body} = req
       const newTrack = await Tracks.create(body)
