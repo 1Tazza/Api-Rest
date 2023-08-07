@@ -12,7 +12,7 @@ router.get("/", authMiddleware, getItems);
 
 router.get("/:id", authMiddleware, validatorGetItem, getItem)
 
-router.post("/", authMiddleware, checkRol(["admin"]), validatorCreateItem, createItem)
+router.post("/", authMiddleware, checkRol(["user","admin"]), validatorCreateItem, createItem)
 
 router.put("/:id", authMiddleware, validatorGetItem, validatorCreateItem, updateItems)
 

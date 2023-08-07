@@ -12,16 +12,16 @@ const sequelize = new Sequelize(
     username,
     password,
     {
-      host,
-      dialect: "postgres"
+        host,
+        dialect: "postgres",
+        logging: false
     }
 )
 
-
 const dbConnectPostgre = async () => {
     try{
-        console.log(password)
        await sequelize.authenticate();
+       await sequelize.sync();
        console.log("POSTGRESQL Conexión correcta")
     }catch(e){
         console.log("POSTGRESQL ERROR DE CONEXIÓN", e)
@@ -30,3 +30,11 @@ const dbConnectPostgre = async () => {
 }
 
 export {sequelize, dbConnectPostgre}
+
+
+
+
+/* const sequelize = new Sequelize(`postgres://${username}:${password}@localhost:${host}/apiRest`, {
+    logging: false, // set to console.log to see the raw SQL queries
+    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+  }) */

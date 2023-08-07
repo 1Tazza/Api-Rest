@@ -3,7 +3,7 @@ import { validateResults } from "../utils/handleValidator.js";
 
 
 const validatorGetItem = [
-    check("id").exists().notEmpty().isMongoId(),
+    check("id").exists().notEmpty(),
     (req, res, next) => {
         return validateResults(req, res, next)
     }

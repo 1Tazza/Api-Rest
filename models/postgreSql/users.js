@@ -1,7 +1,7 @@
-import sequelize from "../../config/postgreSql.js"
+import {sequelize} from "../../config/postgreSql.js"
 import { DataTypes } from "sequelize"
 
-const User = sequelize.define(
+const Users = sequelize.define(
     "users",
     {
      name: {
@@ -9,7 +9,7 @@ const User = sequelize.define(
         allowNull: false
      },
      age: {
-        type: DataTypes.NUMBER
+        type: DataTypes.INTEGER
      },
      email: {
         type: DataTypes.STRING
@@ -18,7 +18,8 @@ const User = sequelize.define(
         type: DataTypes.STRING
      },
      role: {
-        type: DataTypes.ENUM(["user", "admin"])
+        type: DataTypes.ENUM("user", "admin"),
+        defaultValue: "user"
      }
 
     },
@@ -26,3 +27,5 @@ const User = sequelize.define(
         timestamps: true
     }
 )
+
+export default Users

@@ -4,15 +4,17 @@ import { tokenSign } from "../utils/handleJwt.js"
 import { Users } from "../models/index.js"
 import {handleHttpError} from "../utils/handleError.js"
 import bcrypt from "bcryptjs"
+import userProperties from "./handlers/auth-handlers.js"
 
 const registerCtrl = async(req,res) => {
     try{
     req = matchedData(req)
     const password = await encrypt(req.password)
     const body = {...req, password}
+    
     const dataUser = await Users.create(body)
     dataUser.set("password", undefined, {strict: false})
-
+    
     const data = {
         user: dataUser,
         token: tokenSign(dataUser)
@@ -20,15 +22,16 @@ const registerCtrl = async(req,res) => {
 
     res.send({data: data})
     }catch(e) {
-        handleHttpError(res, "REGISTER_USER_EROR")
+        handleHttpError(res, "REGISTER_USER_ERROR")
+        console.log({error: e})
     }
 }
 
 const loginCtrl = async(req, res) => {
     try{ 
         req = matchedData(req)
-        const user = await Users.findOne({email: req.email})
-        .select("password name role email")
+        const user = await userProperties(req)
+     
         if(!user) {
             handleHttpError(res, "USER_NOT_EXISTS", 404)
             return

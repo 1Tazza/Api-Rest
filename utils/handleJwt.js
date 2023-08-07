@@ -1,10 +1,13 @@
 import jwt from "jsonwebtoken";
+import getProperties from "./handlePropertiesEngine.js";
 
 const JWT_SECRET = process.env.JWT_SECRET
 
+const propertiesKey = getProperties()
+
 const tokenSign = (user) => {
     const sign = jwt.sign({
-        _id: user._id,
+        [propertiesKey.id]: user[propertiesKey.id],
         role: user.role
     },
     JWT_SECRET,

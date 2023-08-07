@@ -7,7 +7,7 @@ export default async function dbConnect() {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
-       console.log("**** CONEXIÓN CORRECTA ****")
+       console.log("**** CONEXIÓN CORRECTA MONGODB ****")
     }
     catch(error) {console.log("**** ERROR DE CONEXIÓN ****")} 
 }
