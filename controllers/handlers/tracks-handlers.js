@@ -4,15 +4,15 @@ import { Tracks } from "../../models/index.js"
 
 const ENGINE_DB = process.env.ENGINE_DB
 
-const findAllDB = async(req) => {
-
+const findAllDB = async() => {
+    
     if(ENGINE_DB === "nosql") {
-       return await Users.findOne({email: req.email}).select("password name role email")
+       return await Tracks.find({});
     }
     else {
-        return await Users.findOne({where: {email: req.email}})
+        return await Tracks.findAll()
     }
-   
+    
 }
 
-export default userProperties
+export default findAllDB

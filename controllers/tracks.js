@@ -1,12 +1,12 @@
 import { matchedData } from "express-validator";
 import {Tracks} from "../models/index.js";
 import { handleHttpError } from "../utils/handleError.js";
-
+import findAllDB from "./handlers/tracks-handlers.js";
 
 const getItems = async (req,res) => {
     try {
         const user = req.user
-        const data = await Tracks.find({});
+        const data = await findAllDB()
     
         res.status(200).send({data, user})
 
