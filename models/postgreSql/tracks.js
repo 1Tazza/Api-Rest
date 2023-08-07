@@ -34,7 +34,7 @@ const Tracks = sequelize.define(
      }
     },
     {
-        timestamps: true
+      timestamps: true
     }
 )
 

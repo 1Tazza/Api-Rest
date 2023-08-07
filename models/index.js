@@ -1,6 +1,3 @@
-import dotenv from "dotenv"
-dotenv.config()
-
 import { default as nosqlUsers } from "./nosql/users.js";
 import { default as nosqlTracks } from "./nosql/tracks.js";
 import { default as nosqlStorages } from "./nosql/storage.js";

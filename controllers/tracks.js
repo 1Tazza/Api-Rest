@@ -31,10 +31,9 @@ const getItem = async(req,res) => {
 
 const createItem = async (req,res) => {
     try {
-        console.log("puede????")
-      const body = matchedData(req)
+      const data = req.body
       //const {body} = req
-      const newTrack = await Tracks.create(body)
+      const newTrack = await Tracks.create(data)
       res.status(201).send({newTrack: newTrack})
     }catch(e) { 
         handleHttpError(res, "ERROR_CREATE_ITEMS")
