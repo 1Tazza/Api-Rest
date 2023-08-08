@@ -6,7 +6,7 @@ import findAllDB from "./handlers/tracks-handlers.js";
 const getItems = async (req,res) => {
     try {
         const user = req.user
-        const data = await findAllDB()
+        const data = await Tracks.findAllData({})
     
         res.status(200).send({data, user})
 

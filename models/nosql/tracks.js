@@ -48,6 +48,24 @@ const trackSchema = new Schema({
     timestamps: true,
     versionKey: false
 })
+
+/**
+ * Implementar metodo propio con relacion a storage 
+ */
+trackSchema.statics.findAllData = function() {
+    const joinData = this.aggregate([
+        {
+            $lookup: {
+                from: "storages",
+                localField: "mediaId",
+                foreignField: "_id",
+                as: "audio"
+            }
+        }
+    ]);
+    return joinData
+  };
+
 trackSchema.plugin(mongooseDelete, {overrideMethods: "all"})
 
 const Tracks = model("Tracks", trackSchema);
