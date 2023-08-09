@@ -20,27 +20,6 @@ const trackSchema = new Schema({
             message: "ERROR_URL"
         }
     },
-    artist: {
-        name: {
-            type: String,
-            required: true
-        },
-        nickname: {
-            type: String,
-            required: true
-        },
-        nationality: {
-            type: String
-        }
-    },
-    duration: {
-        start: {
-            type: Number
-        },
-        end: {
-            type: Number
-        }
-    },
     mediaId: {
         type: mongoose.Types.ObjectId
     }
