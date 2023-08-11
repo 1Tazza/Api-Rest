@@ -20,10 +20,11 @@ const getItem = async(req,res) => {
    try{
     req = matchedData(req);
     const {id} = req
-    const data = await Tracks.findById(id);
+    const data = await Tracks.findOneData(id);
     res.status(200).send({data})
    }catch(e){
     handleHttpError(res, "ERROR_GET_ITEM")
+    console.log(e)
    }
 
 };
