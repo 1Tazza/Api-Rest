@@ -1,5 +1,6 @@
 import {sequelize} from "../../config/postgreSql.js"
 import { DataTypes } from "sequelize"
+import Storages from "./storage.js"
 
 const Tracks = sequelize.define(
     "tracks",
@@ -37,5 +38,18 @@ const Tracks = sequelize.define(
       timestamps: true
     }
 )
+
+/**
+ * implementando modelo personalizado
+ */
+
+Tracks.findAllData = function() {
+   Tracks.belongsTo(Storages, {
+      foreignKey: "mediaId"
+   })
+
+   return Tracks.findAll({include: Storages})
+
+}
 
 export default Tracks
