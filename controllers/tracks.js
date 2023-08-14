@@ -12,6 +12,7 @@ const getItems = async (req,res) => {
 
     }catch(e) {
         handleHttpError(res, "ERROR_GET_ITEMS")
+        console.log(e)
     }
 
 };

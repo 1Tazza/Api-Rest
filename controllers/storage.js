@@ -9,8 +9,7 @@ const MEDIA_PATH = `${__dirname}/../storage`
 
 const getItems = async (req,res) => {
   try{
-    const data = await Storages.find({});
-
+    const data = await Storages.findAll({});
     res.send({data})
   }catch(e){
     handleHttpError(res, "ERROR_GET_ITEMS")
