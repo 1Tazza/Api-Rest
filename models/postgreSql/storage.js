@@ -17,4 +17,7 @@ const Storages = sequelize.define(
     }
 )
 
+Storages.findById = Storages.findByPk;
+Storages.find = Storages.findAll;
+
 export default Storages

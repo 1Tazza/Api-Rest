@@ -25,6 +25,7 @@ const getItem = async(req,res) => {
     res.status(200).send({data})
    }catch(e){
     handleHttpError(res, "ERROR_DETAIL_ITEM")
+    console.log(e)
    }
 };
 
