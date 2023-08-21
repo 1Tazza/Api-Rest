@@ -5,6 +5,10 @@ import { validatorGetItem } from "../validators/storage.js";
 
 const router = express()
 
+/**
+ * 
+ */
+
 router.get("/", getItems)
 
 router.get("/:id", validatorGetItem ,getItem)
