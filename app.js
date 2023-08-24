@@ -9,6 +9,7 @@ import { openApiConfig } from "./docs/swagger.js"
 dotenv.config()
 
 const ENGINE_DB = process.env.ENGINE_DB
+const NODE_ENV = process.env.NODE_ENV || "development"
 
 const app = express()
 app.use(cors())
@@ -21,8 +22,10 @@ app.use("/documentation", swaggerUi.serve, swaggerUi.setup(openApiConfig))
 
 app.use("/", routes)
 
-app.listen(port, () => {
-    console.log(`http://localhost:${port}`);
-}); 
+if(NODE_ENV !== "test") {
+    app.listen(port);
+}
 
 (ENGINE_DB === "nosql") ? dbConnect() : dbConnectPostgre()
+
+export default app
