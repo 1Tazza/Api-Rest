@@ -1,5 +1,5 @@
 import { matchedData } from "express-validator"
-import { encrypt } from "../utils/handlepassword.js"
+import { encrypt, compare } from "../utils/handlepassword.js"
 import { tokenSign } from "../utils/handleJwt.js"
 import { Users } from "../models/index.js"
 import {handleHttpError} from "../utils/handleError.js"
@@ -30,6 +30,7 @@ const registerCtrl = async(req,res) => {
 const loginCtrl = async(req, res) => {
     try{ 
         req = matchedData(req)
+        
         const user = await userProperties(req)
      
         if(!user) {
@@ -39,7 +40,7 @@ const loginCtrl = async(req, res) => {
 
         const hashPassword = user.get("password");
 
-        const check = bcrypt.compare(req.password, hashPassword)
+        const check = await compare(req.password, hashPassword)
 
         if(!check) {
             handleHttpError(res, "PASSWORD_INVALID", 401)

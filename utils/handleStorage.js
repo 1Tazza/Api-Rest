@@ -1,9 +1,8 @@
 import multer from "multer";
-import { __dirname } from "../utils/utils.js";
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
-        const pathStorage = `${__dirname}/../storage`;
+        const pathStorage = `C:/Users/Matias/Desktop/Cursos en curso/Udemy - Curso Api Rest/utils/../storage`;
         cb(null, pathStorage) 
     },
     filename: function(req, file, cb) {

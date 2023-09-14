@@ -1,12 +1,10 @@
 import express from "express"
 import fs from "fs"
-import {fileURLToPath} from "url";
-import { dirname } from "path";
-
+import dotenv from "dotenv"
+dotenv.config()
 const router = express.Router()
 
-const __filename = fileURLToPath(import.meta.url);
-const PATH_ROUTES = dirname(__filename);
+const PATH_ROUTES = process.env.ROUTE
 
 const removeExtension = (filename) => {
     return filename.split(".").shift()

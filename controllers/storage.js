@@ -1,11 +1,10 @@
 import { Storages } from "../models/index.js";
 import { handleHttpError } from "../utils/handleError.js";
 import fs from "fs"
-import { __dirname } from "../utils/utils.js";
 import { matchedData } from "express-validator";
 
 const PUBLIC_URL = process.env.PUBLIC_URL
-const MEDIA_PATH = `${__dirname}/../storage`
+const MEDIA_PATH = `C:/Users/Matias/Desktop/Cursos en curso/Udemy - Curso Api Rest/controllers/../storage`
 
 const getItems = async (req,res) => {
   try{
@@ -66,7 +65,7 @@ const deleteItems = async(req,res) => {
     const dataFile = await Storages.findById(id);
     await Storages.delete({_id: id})
     const filePath = `${MEDIA_PATH}/${dataFile.filename}`
-    /* fs.unlinkSync(filePath) */
+    fs.unlinkSync(filePath)
     const data = {
       filePath, deleted: 1
     }   
